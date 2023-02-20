@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action 
+    
     def new
         render :new
     end
