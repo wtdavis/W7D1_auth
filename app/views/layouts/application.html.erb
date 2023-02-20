@@ -12,8 +12,10 @@
   </head>
 
   <body>
+  
     <nav class="main-nav">
       <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+      <h2>Welcome <%= @current_user.username%></h2>
     </nav>
     <main>
       <%= yield %>
