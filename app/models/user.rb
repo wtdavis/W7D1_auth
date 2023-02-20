@@ -27,9 +27,27 @@ class User < ApplicationRecord
     end
 
     def self.find_by_credentials(username, pwd)
-        
+        user = User.find_by(username: username)
+        if user && user.is_password?(pwd)
+            user
+        else
+            redirect_to new_user_url
+        end
     end
 
+    def generate_unique_session_token
+        token = SecureRandom::url_safe.base64
+        while User.exists?(session_token: token)
+            generate_unique_session_token
+        end
+        token
+    end
 
+    def reset_session_token!
+        self.session_token = generate_unique_session_token
+    end
 
+    def ensure_session_token
+        self.session_token ||= generate_unique_session_token
+    end
 end
