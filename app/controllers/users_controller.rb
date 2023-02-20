@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+    before_action 
     def new
         render :new
     end
@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-            #login@user
+            login!(@user)
             redirect cats_url
         else
             redirect_to new_user_url
