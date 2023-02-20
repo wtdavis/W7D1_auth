@@ -6,8 +6,12 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-
-        password_digest
+        if @user.save
+            #login@user
+            redirect cats_url
+        else
+            redirect_to new_user_url
+        end
     end
 
     def user_params
