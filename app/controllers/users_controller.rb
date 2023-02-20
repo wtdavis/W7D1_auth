@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-    
+    before_action :require_logged_out, only: [:new]
+
     def new
         render :new
     end

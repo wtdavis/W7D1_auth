@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+    before_action :require_logged_out, only: [:new]
+    before_action :require_logged_in, only: [:destroy]
+
     def new
         render :new
     end
